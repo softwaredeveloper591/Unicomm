@@ -26,7 +26,7 @@
                     <% studentFiles.forEach(file => { %>
                         <tr>
                             <td>
-                                <a href="/file/<%= file.Student.username %>"><%= file.fileName %></a>
+                                <a href="/file/<%= file.Student.id %>"><%= file.fileName %></a>
                             </td>   
                             <td>
                                 <%= file.Student.username %>

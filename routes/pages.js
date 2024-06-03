@@ -122,13 +122,14 @@ router.get("/displayFiles", [auth, checkUserRole("admin")], async (req, res) => 
 });
 
 //admin's page, after clicking to any request displayed on displayFiles, it opens file where admin can accept or reject request
-router.get('/file/:username', [auth, checkUserRole("admin")], async (req, res) => {
+router.get('/file/:id', [auth, checkUserRole("admin")], async (req, res) => {
   try {
     const student = await Student_model.findOne({
-      where: { username: req.params.username },
+      where: { id: req.params.id },
       include: StudentFile_model
     });
 
+    console.log(student);
     //fakulte?
     const department = await Department_model.findOne({
       attributes: ['bolum_ad'],
