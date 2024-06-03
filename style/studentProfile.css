@@ -161,3 +161,56 @@ form button:hover {
 .question {
 	word-wrap: break-word;
 }
+
+@media (max-width: 1200px) {
+    .profile-container {
+        margin: 50px;
+    }
+}
+
+@media (max-width: 992px) {
+    .profile-container {
+        margin: 30px;
+    }
+    .user-details-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .profile-picture {
+        margin-bottom: 20px;
+    }
+    .user-details {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 20px;
+    }
+    .user-details-container {
+        padding: 15px;
+    }
+    #buttonContainer {
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+    #confirmButton, #cancelButton {
+        width: 100px;
+        font-size: 12px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-container {
+        margin: 10px;
+    }
+    .user-details-container {
+        padding: 10px;
+    }
+    .university-details, .answers-details {
+        padding: 10px;
+    }
+}

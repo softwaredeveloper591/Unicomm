@@ -52,7 +52,7 @@ img {
 /*=============== LOGIN ===============*/
 .login {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   align-items: center;
 }
@@ -203,7 +203,7 @@ img {
   }
 }
 
-.error{
+.login-error{
     color: #ff0000;
     margin: 5px;   
     font-size: 0.8em;
