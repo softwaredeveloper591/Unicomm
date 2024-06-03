@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Question Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/questionDetails.css">
+  <style>
+	body{
+		background-image: url('/<%= university.uni_id %>.jpg');
+	}
+  </style>
+</head>
+<body>
+  <header>
+    <%- include('./nav') %>
+  </header>
+
+  <main class="main">
+    <div class="main__content">
+
+      <!-- Back Button -->
+      <button onclick="window.location.href='/university/<%= question.University.uni_name.replace(/ /g, '_') %>'" class="btn btn-secondary">
+        <i class="ri-arrow-left-line"></i> Back to University Page
+      </button>
+
+      <div class="question-details">
+        <h2><%= question.question_text %></h2>
+        <p>Asked on <%= question.created_at.toDateString() %></p>
+
+		<% if (userValues && user.userType === 'student' && userValues.uni_id === university.uni_id) { %>
+			<div class="submit-answer">
+				<form action="/answerQuestion" method="POST">
+					<input type="hidden" name="question_id" value="<%= question.question_id %>">
+					<div class="form-group">
+						<div class="profile-info">
+							<img src="<%= userValues.profilePicture ? userValues.profilePicture : '/default_profile.png' %>" alt="<%= userValues.username %>'s Profile Picture" class="profile-picture">
+							<textarea oninput="autoResize(this)" class="form-control" name="answer_text" rows="1" placeholder="Write your answer here..."  maxlength="700" required></textarea>
+						</div>
+						<hr>
+					</div>
+					<button style="float: right;" type="submit" class="btn btn-success">Submit Answer</button>
+				</form>
+			</div>
+		<% } %>
+
+        <h3>Answers</h3>
+        <ul class="answers-list">
+			<% if (answers && answers.length) { %>
+				<% answers.reverse().forEach(answer => { %> <!-- Reversing the answers array -->
+					<li class="answer-item">
+						<div class="profile-info">
+							<a href="/profile/<%= answer.Student.id %>" class="profile-link">
+								<img src="<%= answer.Student.profilePicture ? answer.Student.profilePicture : '/default_profile.png' %>" alt="<%= answer.Student.username %>'s Profile Picture" class="profile-picture">
+							</a>
+							<div class="profile-name">
+								<a href="/profile/<%= answer.Student.id %>" class="profile-link" style="font-weight: bold;"> <%= answer.Student.username %> </a>
+								(Answered on <%= answer.created_at.toDateString() %>)
+							</div>
+						</div>
+						<p><%= answer.answer_text %> </p>
+						<div class="voting" data-answer-id="<%= answer.answer_id %>">
+							<button class="btn like-button"><i class="ri-thumb-up-line"></i></button>
+							<span class="like-count" style="padding-left: 1px; padding-right: 4px;"> <%= answer.likes %> </span>
+							<button class="btn dislike-button"><i class="ri-thumb-down-line"></i></button>
+							<span class="dislike-count" style="padding-left: 1px; padding-right: 2px;"><%= answer.dislikes %></span>
+						</div>
+					</li>
+				<% }) %>
+			<% } else { %>
+				<li style="margin-left: 10px;">No answers yet.</li>
+			<% } %>
+		</ul>
+      </div>
+    </div>
+  </main>
+
+  	<script src="/home.js"></script>
+  	<script src="/like-dislike.js"></script>
+  	<script src="/uni_background.js"></script>
+	<script>
+		function autoResize(textarea) {
+			textarea.style.height = 'auto'; // Reset the height to auto
+			textarea.style.height = textarea.scrollHeight + 'px'; // Set the height to the scrollHeight
+		}
+	</script>
+</body>
+</html>
