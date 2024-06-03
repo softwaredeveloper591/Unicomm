@@ -129,7 +129,6 @@ router.get('/file/:id', [auth, checkUserRole("admin")], async (req, res) => {
       include: StudentFile_model
     });
 
-    console.log(student);
     //fakulte?
     const department = await Department_model.findOne({
       attributes: ['bolum_ad'],
