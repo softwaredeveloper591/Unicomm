@@ -302,8 +302,9 @@ img {
 /*==========Change Password==========*/
 .change-password.error{
   margin-top: 10px;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
   height: 22px;
+  color: red;
 }
 
 .change__button{
