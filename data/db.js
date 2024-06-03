@@ -5,8 +5,8 @@ const Sequlize = require("sequelize");
 
 dotenv.config({ path: './.env'});
 
-const sequelize= new Sequlize(process.env.DATABASE,process.env.DATABASE_USER, process.env.DATABASE_PASSWORD,{
-    host: process.env.DATABASE_HOST,
+const sequelize= new Sequlize("mysql://avedntg92slvoyfe:lribohwtt7ua44hh@uf63wl4z2daq9dbb.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/etznmgcgw16ta6zw",
+{
     dialect: "mysql",
     logging: false
 });
