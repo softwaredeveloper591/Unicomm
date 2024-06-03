@@ -387,12 +387,12 @@ router.post("/forgotPassword", async function(req, res) {
         	pass: 'elde beun xhtc btxu' // your Gmail password or App Password if 2FA is enabled
     	}
     });
-
+    
     await transporter.sendMail({
         from: '"UniComm" <enesbilalbabaturalpro06@gmail.com>',
         to: email,
         subject: 'Password Reset Link',
-		html: `<a href="http://localhost:3000/changePassword?token=${token}">Reset Password</a>`
+		html: `<a href="https://unicomm-iyte-57ca0c7beeb8.herokuapp.com/changePassword?token=${token}">Reset Password</a>`
     });
     res.status(200).json({ success: 'Password reset link has been sent.' });
 });
