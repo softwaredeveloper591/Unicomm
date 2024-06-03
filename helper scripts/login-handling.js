@@ -1,7 +1,7 @@
 const form = document.querySelector('form');
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const error = document.querySelector('.login.error');
+      const error = document.querySelector('.login-error');
       // Reset errors
       error.textContent = '';
       // Get values
